@@ -9,7 +9,7 @@ export default class Details extends Component {
     }
 
     static navigationOptions = ({ navigation }) => ({
-        title: navigation.getParam('title', 'Default title'),
+        title: navigation.getParam('title', 'Details'),
         header: navigation.getParam('header'),
         tabBarVisible: navigation.getParam('tabVisible', false),
         headerRight: <TouchableOpacity style={{ width: 20, height: 20, marginRight: 10, borderRadius: 10 }} onPress={() => {
@@ -45,6 +45,7 @@ export default class Details extends Component {
     render() {
 
         const variable = this.props.navigation.getParam('variable', 'Without value')
+        const title = this.props.navigation.getParam('title', 'Details')
 
         return (
             <View style={styles.container} >
@@ -52,8 +53,10 @@ export default class Details extends Component {
                 <Text>{variable}</Text>
 
                 <Button style={{ width: 100, height: 100 }} title='Change Title' onPress={() => {
-                    this.props.navigation.setParams({ title: 'Details' });
+                    (title == 'Details') ? this.props.navigation.setParams({ title: 'Details Screen' }) :
+                        this.props.navigation.setParams({ title: 'Details' });
                 }} />
+
 
                 <Button style={{ width: 100, height: 100 }} title='Change Variable' onPress={() => {
                     this.props.navigation.setParams({ variable: 'I change the Variable' });
